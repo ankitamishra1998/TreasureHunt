@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find The Treasure</title>
+</head>
+<body>
+	<h1  style="color:#4B4645 align: center" id="heading">Find the Treasure</h1>
+	<img align="center" id="screen" width=1000 height=650
+		src="/Users/Umesh/Desktop/FindTheTreasure/TreasureMap.jpg" >
+
+<p id="distance"></p>
+		
+<script  src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+<script>
+var getRandomNumber = function(size) {
+	return Math.floor(Math.random() * size);
+};
+
+var getDistanceFromBug = function(event,Bug){
+	var distX = event.offsetX - Bug.x;
+	var distY = event.offsetY - Bug.y; 
+	return (Math.sqrt((distX*distX) + (distY*distY)));
+};
+
+var distanceMessage = function(distanceFromBug){
+	if(distanceFromBug<15){
+	return "You're awesome";
+	} else if(distanceFromBug<30){
+	return "1 units away...";
+	} else if (distanceFromBug<50){
+	return "2 units away...";
+	} else if (distanceFromBug<150){
+	return "3 units away...";
+	}else if(distanceFromBug<200){
+	return "4 units away...";
+	} else if (distanceFromBug<250){
+	return "5 units away...";
+	} else if(distanceFromBug<300){
+	return "6 units away...";
+	} else if(distanceFromBug<350){
+	return "7 units away...";
+	}else{
+	return "8 units away...";
+	}
+	
+};
+
+var width = 800;
+var height = 700;
+var noOfClicks = 0;
+
+var bug = {
+	x: getRandomNumber(width), 
+	y: getRandomNumber(height)
+};
+
+
+$("#screen").click(function(event){
+	noOfClicks++;
+	
+var distance = getDistanceFromBug(event, bug);
+
+var distMessage = distanceMessage(distance);
+
+$("#distance").text(distMessage);
+
+if(distance<15) {
+	alert("found: " + noOfClicks);
+}
+
+});
+
+</script>
+</body>
+</html>
